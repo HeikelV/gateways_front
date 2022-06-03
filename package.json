@@ -1,0 +1,23 @@
+{
+  "name": "gateways_front",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
+    "mitt": "^3.0.0",
+    "vue": "^3.2.25",
+    "vue-basic-alert": "^1.1.0",
+    "vue-router": "^4.0.15",
+    "vue3-promise-dialog": "^0.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "vite": "^2.9.9"
+  }
+}
