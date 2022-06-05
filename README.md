@@ -1,7 +1,25 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Gateways Frontend App (VueJS)
 
-## Recommended IDE Setup
+- [DEMO](https://steady-biscochitos-ed76e9.netlify.app/) 
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+**A sample project for gateways management** 
+
+## Requirements
+1. NodeJS 14.7 or above
+
+## Install instructions
+
+1. Prepare your enviroments variables before run the project:
+- Rename `.env_example` to `.env`
+- Configure the `VITE_BASE_SERVER_URL` with your Gateways API Backend Server
+- Example : `VITE_BASE_SERVER_URL=http://localhost:5000`
+
+
+2. Open the terminal in the project root directory and run:
+  
+    ``` 
+    $ npm install
+    $ npm run dev 
+    ```
+3. Your app will be available in `http://localhost:3000`

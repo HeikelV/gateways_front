@@ -1,4 +1,7 @@
 <template>
+  <loading v-model:active="isLoading"
+                 :can-cancel="false"
+                 :is-full-page="true"/>
   <div class="table-responsive">
     <table class="table table-striped caption-top">
       <caption>List of Gateways</caption>
@@ -53,21 +56,26 @@
 
 <script>
 import GatewayServices from "../services/GatewayServices";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   name: "GatewayList",
   data() {
     return {
-      gateways: null
+      gateways: null,
+      isLoading: false,
     }
+  },
+  components: {
+            Loading
   },
   created() {
     this.emitter.on('gateway-created', (evt) => {
-      this.gateways.push(evt.gatewayData.data);
+      this.getAllGateways()
     });
     this.emitter.on('peripheral-created', (evt) => {
-      const index = this.gateways.findIndex(a => a._id === evt.peripheralData.data.gateway)
-      this.gateways[index].peripherals.push(evt.peripheralData.data);
+      this.getAllGateways()
      })
   },
   mounted() {
@@ -75,10 +83,12 @@ export default {
   },
   methods: {
     getAllGateways() {
+      this.isLoading = true;
       GatewayServices.getGateways()
           .then(response => {
             this.gateways = response.data.data;
             this.emitter.emit('all', {'allGateways': response.data.data});
+            this.isLoading = false;
           }).catch(e => {
         throw e;
       })
@@ -86,9 +96,10 @@ export default {
 
     async deleteGateway(id) {
       this.$root.open(()=>{
+        this.isLoading = true;
         GatewayServices.deleteGateway(id)
             .then(response => {
-              this.gateways.splice(this.gateways.findIndex(a => a._id === response.data.data), 1)
+              this.getAllGateways()
             }).catch(e => {
           throw e;
         })
@@ -96,10 +107,10 @@ export default {
     },
     async deletePeripheral(id) {
       this.$root.open(()=>{
+        this.isLoading = true;
         GatewayServices.deletePeripheral(id)
             .then(response => {
               this.getAllGateways()
-              //this.gateways.splice(this.gateways.findIndex(a => a._id === response.data.data), 1)
             }).catch(e => {
           throw e;
         })
