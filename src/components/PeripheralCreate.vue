@@ -55,10 +55,10 @@ export default {
   methods: {
     onSubmit(e) {
       e.preventDefault()
-      if (!this.vendor) {
-        alert('Please Add a Vendor Name')
-        return
-      }
+      // if (!this.vendor) {
+      //   alert('Please Add a Vendor Name')
+      //   return
+      // }
       const data = {
         uid: this.uid,
         vendor: this.vendor,

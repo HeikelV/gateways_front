@@ -36,11 +36,8 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      e.preventDefault()
-      if (!this.name) {
-        alert('Please Add a Name')
-        return
-      }
+       e.preventDefault()
+
       const data = {
         serial_number: this.serial_number,
         name: this.name,
